@@ -1,0 +1,105 @@
+:root {
+  --primary-color: #0070c9;
+  --secondary-color: #f5f5f7;
+  --accent-color: #86c0e9;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary-color);
+  color: #333;
+}
+
+/* Custom slider styling */
+input[type="range"] {
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e2e8f0;
+  outline: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+  margin: 1rem 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  background: #2563eb;
+  width: 22px;
+  height: 22px;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background: #2563eb;
+  width: 22px;
+  height: 22px;
+}
+
+/* Empty space above and below slider to ensure ticks and labels fit */
+.slider-container {
+  padding: 12px 0 28px 0;
+  position: relative;
+}
+
+/* Animation for identification result */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mt-8 {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Ensure tick marks and labels don't overflow */
+.relative {
+  overflow: visible;
+}
+
+/* Fix for mobile responsiveness */
+@media (max-width: 640px) {
+  .relative .absolute {
+    font-size: 9px;
+  }
+}
+
+/* Improve spacing on smaller screens */
+@media (max-width: 768px) {
+  input[type="range"] {
+    margin: 1.5rem 0;
+  }
+
+  .slider-container {
+    padding: 12px 0 36px 0;
+  }
+}
