@@ -1,54 +1,141 @@
-# React + TypeScript + Vite
+# iPhone Identifier Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application that helps users identify iPhone models (newer than iPhone 6) based on their physical features.
 
-Currently, two official plugins are available:
+![iPhone Identifier Tool](/api/placeholder/800/400 "iPhone Identifier Tool")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+The iPhone Identifier Tool allows users to select various physical features of an iPhone through intuitive sliders and instantly identifies the corresponding iPhone model. Perfect for tech repair shops, buyers of used iPhones, or anyone curious about which model they're looking at.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Interactive sliders to select physical characteristics of iPhones
+- Real-time model identification based on selected features
+- Support for iPhone models newer than iPhone 6
+- Responsive design that works on both desktop and mobile devices
+- Modern, clean user interface built with React
+
+## Physical Features Included
+
+- Screen size
+- Number of cameras
+- Notch/Dynamic Island presence
+- Button types (Home button vs. no Home button)
+- Camera layout (horizontal/vertical)
+- Port type (Lightning/USB-C)
+- Phone dimensions
+- Bezel design
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16.0.0 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/iphone-identifier-tool.git
+   cd iphone-identifier-tool
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+# or
+yarn build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The build artifacts will be stored in the `dist/` directory.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Preview Production Build
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+To preview the production build locally:
+
+```bash
+npm run preview
+# or
+yarn preview
 ```
+
+## Project Structure
+
+```
+iphone-identifier-tool/
+├── public/
+│   ├── images/
+│   │   └── iphone-models/
+├── src/
+│   ├── components/
+│   │   ├── FeatureSlider.jsx
+│   │   ├── ModelIdentifier.jsx
+│   │   ├── PhoneVisualizer.jsx
+│   │   └── ...
+│   ├── data/
+│   │   └── iphone-data.js
+│   ├── hooks/
+│   │   └── useIdentifier.js
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## Technologies Used
+
+- [Vite](https://vitejs.dev/) - Next generation frontend tooling
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [React Spring](https://react-spring.io/) - For smooth slider animations
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Apple Inc. for the iPhone specifications information
+- All contributors who help improve this tool
+
+## Contact
+
+Project Link: [(https://github.com/yourusername/iphone-identifier-tool)](https://github.com/Ghosty1667/iphonefinder/edit/main/README.md)
+
+---
+
+Made with ❤️ by Kieran Price
