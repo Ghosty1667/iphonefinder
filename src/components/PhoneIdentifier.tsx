@@ -76,8 +76,8 @@ function PhoneIdentifier({
       label: "Charging Port",
       options: [
         { value: "not-sure", label: "Not sure" },
-        { value: "Lightning port", label: "Lightning port" },
-        { value: "USB-C port", label: "USB-C port" },
+        { value: "Lightning port", label: "Lightning" },
+        { value: "USB-C port", label: "Usb-C" },
       ],
     },
     {
@@ -185,85 +185,90 @@ function PhoneIdentifier({
   };
 
   return (
-    <div className="space-y-6">
-      {features.map((feature) => {
-        const optionCount = feature.options.length;
+<div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-10">
+        {features.map((feature) => {
+          const optionCount = feature.options.length;
+          const selectedIndex = getSelectedIndex(feature.id);
 
-        return (
-          <div key={feature.id} className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">
-              {feature.label}:{" "}
-              <span className="text-blue-600 font-bold">
-                {feature.options[getSelectedIndex(feature.id)].label}
-              </span>
-            </label>
-            <div className="mt-2">
-              <input
-                type="range"
-                min="0"
-                max={optionCount - 1}
-                value={getSelectedIndex(feature.id)}
-                onChange={(e) => handleSliderChange(feature.id, e)}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-              />
-
-              {/* Tick marks for slider positions */}
-              <div className="relative w-full h-6 mt-1">
-                {feature.options.map((option, index) => {
-                  const position = (index / (optionCount - 1)) * 100;
-                  return (
-                    <div
-                      key={index}
-                      className={`absolute top-0 w-1 h-3 -ml-0.5 ${
-                        index === getSelectedIndex(feature.id)
-                          ? "bg-blue-600"
-                          : "bg-gray-400"
-                      }`}
-                      style={{ left: `${position}%` }}
-                    ></div>
-                  );
-                })}
+          return (
+            <div key={feature.id} className="space-y-4">
+              <div className="flex items-center justify-between">
+                <label className="text-gray-700 font-medium">
+                  {feature.label}
+                </label>
+                <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-sm font-semibold rounded-full">
+                  {feature.options[selectedIndex].label}
+                </span>
               </div>
+              
+              <div className="space-y-3">
+                <div className="relative">
+                  <input
+                    type="range"
+                    min="0"
+                    max={optionCount - 1}
+                    value={selectedIndex}
+                    onChange={(e) => handleSliderChange(feature.id, e)}
+                    className="w-full h-2 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full appearance-none cursor-pointer slider-modern"
+                    style={{
+                      background: `linear-gradient(to right, #3b82f6 0%, #6366f1 ${(selectedIndex / (optionCount - 1)) * 100}%, #e5e7eb ${(selectedIndex / (optionCount - 1)) * 100}%, #e5e7eb 100%)`
+                    }}
+                  />
+                </div>
 
-              {/* Labels for slider positions */}
-              <div className="relative w-full mt-1 text-xs text-gray-600">
-                {feature.options.map((option, index) => {
-                  // Show fewer labels for readability when there are many options
-                  const shouldShow =
-                    optionCount <= 5 ||
-                    index === 0 ||
-                    index === optionCount - 1 ||
-                    index === getSelectedIndex(feature.id);
+                {/* Tick marks */}
+                <div className="relative w-full h-2">
+                  {feature.options.map((option, index) => {
+                    const position = (index / (optionCount - 1)) * 100;
+                    return (
+                      <div
+                        key={index}
+                        className={`absolute top-0 w-1 h-2 -ml-0.5 rounded-full transition-all duration-200 ${
+                          index === selectedIndex
+                            ? "bg-gradient-to-b from-blue-500 to-indigo-600 scale-125"
+                            : "bg-gray-400"
+                        }`}
+                        style={{ left: `${position}%` }}
+                      ></div>
+                    );
+                  })}
+                </div>
 
-                  if (!shouldShow) return null;
+                {/* Labels */}
+                <div className="relative w-full text-xs text-gray-600">
+                  {feature.options.map((option, index) => {
+                    const shouldShow = optionCount <= 5 || index === 0 || index === optionCount - 1 || index === selectedIndex;
+                    if (!shouldShow) return null;
 
-                  const position = (index / (optionCount - 1)) * 100;
-                  return (
-                    <div
-                      key={index}
-                      className={`absolute transform -translate-x-1/2 ${
-                        index === getSelectedIndex(feature.id)
-                          ? "text-blue-600 font-medium"
-                          : ""
-                      }`}
-                      style={{ left: `${position}%` }}
-                    >
-                      {option.label}
-                    </div>
-                  );
-                })}
+                    const position = (index / (optionCount - 1)) * 100;
+                    return (
+                      <div
+                        key={index}
+                        className={`absolute transform -translate-x-1/2 transition-all duration-200 ${
+                          index === selectedIndex
+                            ? "text-blue-600 font-semibold scale-105"
+                            : "text-gray-500"
+                        }`}
+                        style={{ left: `${position}%` }}
+                      >
+                        {option.label}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
 
-      <div className="mt-8 flex space-x-4">
+      <div className="pt-6 border-t border-gray-200">
         <button
           onClick={resetSelections}
-          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition"
+          className="px-6 py-3 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 font-medium rounded-xl transition-all duration-200 hover:shadow-md hover:scale-105 active:scale-95"
         >
-          Reset
+          Reset All
         </button>
       </div>
     </div>
