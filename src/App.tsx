@@ -19,7 +19,7 @@ function App() {
         }}></div>
       </div>
 
-      <main className="relative container mx-auto px-4 py-12">
+      <main className="relative container mx-auto px-4 pt-6">
         <div className="backdrop-blur-sm bg-white/80 rounded-3xl shadow-2xl border border-white/50 p-8 max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -71,8 +71,6 @@ function App() {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 }
