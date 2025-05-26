@@ -2,7 +2,6 @@
 
 A React-based web application that helps users identify iPhone models (newer than iPhone 6) based on their physical features.
 
-![iPhone Identifier Tool](/api/placeholder/800/400 "iPhone Identifier Tool")
 
 ## Overview
 
